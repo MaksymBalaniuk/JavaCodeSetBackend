@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1.1.1" author="Maxim Balaniuk">
+        <createTable tableName="comments">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="user_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="block_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="comment" type="text"/>
+
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.1.2" author="Maxim Balaniuk">
+        <addForeignKeyConstraint baseTableName="comments"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_comments_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1.1.3" author="Maxim Balaniuk">
+        <addForeignKeyConstraint baseTableName="comments"
+                                 baseColumnNames="block_id"
+                                 constraintName="fk_comments_code_blocks"
+                                 referencedTableName="code_blocks"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

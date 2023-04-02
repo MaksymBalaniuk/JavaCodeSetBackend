@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="2.0.0" author="Maxim Balaniuk">
+        <createTable tableName="shares">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="to_user_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="from_user_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="block_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2.0.1" author="Maxim Balaniuk">
+        <addForeignKeyConstraint baseTableName="shares"
+                                 baseColumnNames="to_user_id"
+                                 constraintName="fk_shares_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="2.0.2" author="Maxim Balaniuk">
+        <addForeignKeyConstraint baseTableName="shares"
+                                 baseColumnNames="block_id"
+                                 constraintName="fk_shares_code_blocks"
+                                 referencedTableName="code_blocks"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
