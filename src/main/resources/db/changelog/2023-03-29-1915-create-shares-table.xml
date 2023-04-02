@@ -35,6 +35,14 @@
 
     <changeSet id="2.0.2" author="Maxim Balaniuk">
         <addForeignKeyConstraint baseTableName="shares"
+                                 baseColumnNames="from_user_id"
+                                 constraintName="fk_shares_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="2.0.3" author="Maxim Balaniuk">
+        <addForeignKeyConstraint baseTableName="shares"
                                  baseColumnNames="block_id"
                                  constraintName="fk_shares_code_blocks"
                                  referencedTableName="code_blocks"
