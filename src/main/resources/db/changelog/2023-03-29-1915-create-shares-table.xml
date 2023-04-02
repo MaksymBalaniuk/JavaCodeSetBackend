@@ -28,7 +28,7 @@
     <changeSet id="2.0.1" author="Maxim Balaniuk">
         <addForeignKeyConstraint baseTableName="shares"
                                  baseColumnNames="to_user_id"
-                                 constraintName="fk_shares_users"
+                                 constraintName="fk_shares_users_1"
                                  referencedTableName="users"
                                  referencedColumnNames="id"/>
     </changeSet>
@@ -36,7 +36,7 @@
     <changeSet id="2.0.2" author="Maxim Balaniuk">
         <addForeignKeyConstraint baseTableName="shares"
                                  baseColumnNames="from_user_id"
-                                 constraintName="fk_shares_users"
+                                 constraintName="fk_shares_users_2"
                                  referencedTableName="users"
                                  referencedColumnNames="id"/>
     </changeSet>
