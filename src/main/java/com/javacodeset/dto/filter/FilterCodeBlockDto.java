@@ -1,5 +1,6 @@
 package com.javacodeset.dto.filter;
 
+import com.javacodeset.enumeration.CodeBlockType;
 import lombok.Data;
 
 @Data
@@ -9,4 +10,5 @@ public class FilterCodeBlockDto {
     private Boolean filterDescription;
     private Boolean filterContent;
     private Boolean filterTags;
+    private CodeBlockType[] allowedTypes;
 }
