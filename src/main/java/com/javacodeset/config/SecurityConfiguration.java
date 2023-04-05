@@ -18,15 +18,18 @@ public class SecurityConfiguration {
     private final RestAuthenticationEntryPoint authenticationEntryPoint;
     private final String[] authWhiteList;
     private final String[] adminAccessList;
+    private final String[] developerAccessList;
 
     public SecurityConfiguration(JwtProvider jwtProvider,
                                  RestAuthenticationEntryPoint authenticationEntryPoint,
                                  @Qualifier("authWhiteList") String[] authWhiteList,
-                                 @Qualifier("adminAccessList") String[] adminAccessList) {
+                                 @Qualifier("adminAccessList") String[] adminAccessList,
+                                 @Qualifier("developerAccessList") String[] developerAccessList) {
         this.jwtProvider = jwtProvider;
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.authWhiteList = authWhiteList;
         this.adminAccessList = adminAccessList;
+        this.developerAccessList = developerAccessList;
     }
 
     @Bean
@@ -35,6 +38,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .antMatchers(authWhiteList).permitAll()
                         .antMatchers(adminAccessList).hasRole("ADMIN")
+                        .antMatchers(developerAccessList).hasRole("DEVELOPER")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .cors()
