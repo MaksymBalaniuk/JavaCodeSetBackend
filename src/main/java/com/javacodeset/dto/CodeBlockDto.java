@@ -3,7 +3,6 @@ package com.javacodeset.dto;
 import lombok.Data;
 import com.javacodeset.enumeration.CodeBlockType;
 
-import java.time.Instant;
 import java.util.UUID;
 
 @Data
@@ -13,7 +12,7 @@ public class CodeBlockDto {
     private String description;
     private String content;
     private CodeBlockType type;
-    private Instant created;
-    private Instant updated;
+    private Long created;
+    private Long updated;
     private UUID userId;
 }

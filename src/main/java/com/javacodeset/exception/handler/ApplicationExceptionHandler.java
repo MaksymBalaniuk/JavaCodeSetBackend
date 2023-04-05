@@ -25,8 +25,12 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<Object> handleNotFoundException(
             NotFoundException notFoundException) {
         log.warn(notFoundException.getMessage());
-        return new ResponseEntity<>(new ErrorResponseDto(HttpServletResponse.SC_NOT_FOUND,
-                notFoundException.getMessage(), Instant.now()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(
+                new ErrorResponseDto(
+                        HttpServletResponse.SC_NOT_FOUND,
+                        notFoundException.getMessage(),
+                        Instant.now().toEpochMilli()),
+                HttpStatus.NOT_FOUND);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -34,8 +38,12 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<Object> handleBadRequestException(
             BadRequestException badRequestException) {
         log.warn(badRequestException.getMessage());
-        return new ResponseEntity<>(new ErrorResponseDto(HttpServletResponse.SC_BAD_REQUEST,
-                badRequestException.getMessage(), Instant.now()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(
+                new ErrorResponseDto(
+                        HttpServletResponse.SC_BAD_REQUEST,
+                        badRequestException.getMessage(),
+                        Instant.now().toEpochMilli()),
+                HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -43,8 +51,12 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<Object> handleProhibitedOperationException(
             ProhibitedOperationException prohibitedOperationException) {
         log.warn(prohibitedOperationException.getMessage());
-        return new ResponseEntity<>(new ErrorResponseDto(HttpServletResponse.SC_BAD_REQUEST,
-                prohibitedOperationException.getMessage(), Instant.now()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(
+                new ErrorResponseDto(
+                        HttpServletResponse.SC_BAD_REQUEST,
+                        prohibitedOperationException.getMessage(),
+                        Instant.now().toEpochMilli()),
+                HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -52,8 +64,12 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<Object> handleJavaCodeExecutionException(
             JavaCodeExecutionException javaCodeExecutionException) {
         log.warn(javaCodeExecutionException.getMessage());
-        return new ResponseEntity<>(new ErrorResponseDto(HttpServletResponse.SC_BAD_REQUEST,
-                javaCodeExecutionException.getMessage(), Instant.now()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(
+                new ErrorResponseDto(
+                        HttpServletResponse.SC_BAD_REQUEST,
+                        javaCodeExecutionException.getMessage(),
+                        Instant.now().toEpochMilli()),
+                HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -61,8 +77,12 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<Object> handleInternalExecutorException(
             InternalExecutorException internalExecutorException) {
         log.error(internalExecutorException.getMessage());
-        return new ResponseEntity<>(new ErrorResponseDto(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                internalExecutorException.getMessage(), Instant.now()), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(
+                new ErrorResponseDto(
+                        HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                        internalExecutorException.getMessage(),
+                        Instant.now().toEpochMilli()),
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -70,7 +90,11 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<Object> handleBadRequestException(
             BadCredentialsException badCredentialsException) {
         log.warn(badCredentialsException.getMessage());
-        return new ResponseEntity<>(new ErrorResponseDto(HttpServletResponse.SC_UNAUTHORIZED,
-                badCredentialsException.getMessage(), Instant.now()), HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(
+                new ErrorResponseDto(
+                        HttpServletResponse.SC_UNAUTHORIZED,
+                        badCredentialsException.getMessage(),
+                        Instant.now().toEpochMilli()),
+                HttpStatus.UNAUTHORIZED);
     }
 }

@@ -14,4 +14,6 @@ public class UserDto {
     private String email;
     private UserStatus status;
     private UserPremium premium;
+    private Long created;
+    private Long updated;
 }

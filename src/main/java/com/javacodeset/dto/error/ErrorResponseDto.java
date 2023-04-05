@@ -12,5 +12,5 @@ import java.time.Instant;
 public class ErrorResponseDto {
     private Integer status;
     private String message;
-    private Instant time;
+    private Long time;
 }
