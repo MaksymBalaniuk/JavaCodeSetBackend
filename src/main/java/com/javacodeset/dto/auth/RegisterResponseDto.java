@@ -10,8 +10,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterResponseDto {
-    private Boolean existByUsername;
-    private Boolean existByEmail;
+    private Boolean existsByUsername;
+    private Boolean existsByEmail;
     private String token;
     private UUID id;
 }
