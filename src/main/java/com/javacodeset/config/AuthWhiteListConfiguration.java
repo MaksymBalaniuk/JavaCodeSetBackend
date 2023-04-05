@@ -12,6 +12,12 @@ public class AuthWhiteListConfiguration {
     public String[] getAuthWhiteList() {
         return new String[] {
                 "/api/auth/**",
+                "/api/users/get/**",
+                "/api/tags/get/**",
+                "/api/tags/get-all/by-block-id/**",
+                "/api/blocks/get-all/filtered",
+                "/api/estimates/get-all/by-block-id/**",
+                "/api/comments/get-all/by-block-id/**",
                 "/swagger-resources",
                 "/documentation/swagger-ui",
                 "/swagger-resources/**",
