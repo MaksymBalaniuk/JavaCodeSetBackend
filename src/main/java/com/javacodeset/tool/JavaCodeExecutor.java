@@ -237,7 +237,7 @@ public class JavaCodeExecutor {
 
         private final ExecutionTempDataDto tempData;
         private final JavaCodeExecutionResponseDto response;
-        private  final String[] args;
+        private final String[] args;
 
         @Override
         public void run() {
