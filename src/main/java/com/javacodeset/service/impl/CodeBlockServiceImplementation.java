@@ -81,6 +81,11 @@ public class CodeBlockServiceImplementation implements CodeBlockService {
     }
 
     @Override
+    public List<CodeBlockEntity> getAllCodeBlocksByUserId(UUID userId) {
+        return codeBlockRepository.findAllByUserId(userId);
+    }
+
+    @Override
     @Transactional
     public List<CodeBlockEntity> getAllFilteredCodeBlocksByUserId(
             UUID userId, FilterCodeBlockDto filterCodeBlockDto) {
