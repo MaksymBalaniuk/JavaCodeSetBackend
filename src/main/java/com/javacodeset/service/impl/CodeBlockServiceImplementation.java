@@ -1,5 +1,7 @@
 package com.javacodeset.service.impl;
 
+import com.javacodeset.exception.BadRequestException;
+import com.javacodeset.util.PremiumLimitsPolicy;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,11 @@ public class CodeBlockServiceImplementation implements CodeBlockService {
     public CodeBlockEntity create(CodeBlockDto codeBlockDto) {
         UserEntity user = userRepository.findById(codeBlockDto.getUserId()).orElseThrow(() ->
                 new NotFoundException(String.format("User with id '%s' does not exist", codeBlockDto.getUserId())));
+
+        if (user.getCodeBlocks().size() >=
+                PremiumLimitsPolicy.getPremiumLimits(user.getPremium()).getCodeBlocksLimit())
+            throw new BadRequestException(String.format(
+                    "User with id '%s' exceeds premium limit of code blocks", user.getId()));
 
         CodeBlockEntity codeBlock = modelMapper.map(codeBlockDto, CodeBlockEntity.class);
         codeBlock.setId(null);
