@@ -73,15 +73,17 @@ public class CodeBlockServiceImplementation implements CodeBlockService {
     @Override
     @Transactional
     public CodeBlockEntity update(CodeBlockDto codeBlockDto) {
-        codeBlockRepository.findById(codeBlockDto.getId()).orElseThrow(() ->
+        CodeBlockEntity codeBlock = codeBlockRepository.findById(codeBlockDto.getId()).orElseThrow(() ->
                 new NotFoundException(String.format("CodeBlock with id '%s' does not exist", codeBlockDto.getId())));
         UserEntity user = userRepository.findById(codeBlockDto.getUserId()).orElseThrow(() ->
                 new NotFoundException(String.format("User with id '%s' does not exist", codeBlockDto.getUserId())));
 
         validateCodeBlockDtoByUserPremiumLimits(codeBlockDto, user, false);
 
-        CodeBlockEntity codeBlock = modelMapper.map(codeBlockDto, CodeBlockEntity.class);
-        codeBlock.setUser(user);
+        codeBlock.setTitle(codeBlockDto.getTitle());
+        codeBlock.setDescription(codeBlockDto.getDescription());
+        codeBlock.setContent(codeBlockDto.getContent());
+        codeBlock.setType(codeBlockDto.getType());
         codeBlockRepository.save(codeBlock);
         user.getCodeBlocks().add(codeBlock);
         userRepository.save(user);
