@@ -42,7 +42,7 @@ public class UserServiceImplementation implements UserService {
         user.setStatus(UserStatus.ACTIVE);
         user.setPremium(UserPremium.NONE);
         user.getAuthorities().add(basicAuthority);
-        user = userRepository.save(user);
+        userRepository.save(user);
         basicAuthority.getUsers().add(user);
         authorityRepository.save(basicAuthority);
         return user;
