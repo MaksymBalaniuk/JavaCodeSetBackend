@@ -1,5 +1,6 @@
 package com.javacodeset.service.impl;
 
+import com.javacodeset.dto.premium.PremiumLimitsDto;
 import com.javacodeset.exception.BadRequestException;
 import com.javacodeset.util.PremiumLimitsPolicy;
 import lombok.RequiredArgsConstructor;
@@ -33,10 +34,7 @@ public class CodeBlockServiceImplementation implements CodeBlockService {
         UserEntity user = userRepository.findById(codeBlockDto.getUserId()).orElseThrow(() ->
                 new NotFoundException(String.format("User with id '%s' does not exist", codeBlockDto.getUserId())));
 
-        if (user.getCodeBlocks().size() >=
-                PremiumLimitsPolicy.getPremiumLimits(user.getPremium()).getCodeBlocksLimit())
-            throw new BadRequestException(String.format(
-                    "User with id '%s' exceeds premium limit of code blocks", user.getId()));
+        validateCodeBlockDtoByUserPremiumLimits(codeBlockDto, user, true);
 
         CodeBlockEntity codeBlock = modelMapper.map(codeBlockDto, CodeBlockEntity.class);
         codeBlock.setId(null);
@@ -46,6 +44,19 @@ public class CodeBlockServiceImplementation implements CodeBlockService {
         user.getCodeBlocks().add(codeBlock);
         userRepository.save(user);
         return codeBlock;
+    }
+
+    private void validateCodeBlockDtoByUserPremiumLimits(
+            CodeBlockDto codeBlockDto, UserEntity user, boolean creating) {
+        PremiumLimitsDto premiumLimits = PremiumLimitsPolicy.getPremiumLimits(user.getPremium());
+
+        if (user.getCodeBlocks().size() >= premiumLimits.getCodeBlocksLimit() && creating)
+            throw new BadRequestException(String.format(
+                    "User with id '%s' exceeds premium limit of code blocks", user.getId()));
+
+        if (codeBlockDto.getContent().length() > premiumLimits.getCodeBlockContentLimit())
+            throw new BadRequestException(String.format(
+                    "User with id '%s' exceeds premium limit of code block content length", user.getId()));
     }
 
     @Override
@@ -66,6 +77,8 @@ public class CodeBlockServiceImplementation implements CodeBlockService {
                 new NotFoundException(String.format("CodeBlock with id '%s' does not exist", codeBlockDto.getId())));
         UserEntity user = userRepository.findById(codeBlockDto.getUserId()).orElseThrow(() ->
                 new NotFoundException(String.format("User with id '%s' does not exist", codeBlockDto.getUserId())));
+
+        validateCodeBlockDtoByUserPremiumLimits(codeBlockDto, user, false);
 
         CodeBlockEntity codeBlock = modelMapper.map(codeBlockDto, CodeBlockEntity.class);
         codeBlock.setUser(user);
