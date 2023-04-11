@@ -37,6 +37,14 @@ public class UserRestController {
         return new AuthenticationResponseDto(token, user.getId());
     }
 
+    @PatchMapping("/update/{userId}/user-premium/{userPremium}")
+    public AuthenticationResponseDto updateUserPremiumById(
+            @PathVariable UUID userId, @PathVariable UserPremium userPremium) {
+        UserEntity user = userService.updateUserPremium(userId, userPremium);
+        String token = jwtProvider.createToken(user.getUsername(), user.getAuthorities());
+        return new AuthenticationResponseDto(token, user.getId());
+    }
+
     @PatchMapping("/update/{userId}/activate")
     public UserDto activateUserById(@PathVariable UUID userId) {
         return UserResponseCredentialsHidingPolicy.hide(
