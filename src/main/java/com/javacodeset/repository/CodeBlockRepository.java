@@ -18,4 +18,10 @@ public interface CodeBlockRepository extends JpaRepository<CodeBlockEntity, UUID
             "ON codeBlock.id = estimate.codeBlock.id " +
             "AND estimate.user.id = ?1 AND estimate.type = ?2")
     List<CodeBlockEntity> findAllCodeBlocksByUserIdAndEstimateType(UUID userId, EstimateType estimateType);
+
+    @Query("SELECT codeBlock FROM CodeBlock codeBlock " +
+            "INNER JOIN Share share " +
+            "ON codeBlock.id = share.codeBlock.id " +
+            "AND share.fromUser.id = ?1 AND share.toUser.id = ?2")
+    List<CodeBlockEntity> findAllCodeBlocksSharedFromUserIdToUserId(UUID fromUserId, UUID toUserId);
 }

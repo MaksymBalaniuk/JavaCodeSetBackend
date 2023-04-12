@@ -65,8 +65,16 @@ public class CodeBlockRestController {
             @PathVariable UUID userId, @PathVariable EstimateType estimateType,
             @RequestBody FilterCodeBlockDto filterCodeBlockDto) {
         return codeBlockService.getAllFilteredCodeBlocksByUserIdAndEstimateType(
-                userId, estimateType, filterCodeBlockDto)
-                .stream()
+                userId, estimateType, filterCodeBlockDto).stream()
+                .map(codeBlockEntity -> modelMapper.map(codeBlockEntity, CodeBlockDto.class)).toList();
+    }
+
+    @PostMapping("/get-all/shared-from-user-id-to-user-id/{fromUserId}/{toUserId}/filtered")
+    public List<CodeBlockDto> getAllFilteredCodeBlocksSharedFromUserIdToUserId(
+            @PathVariable UUID fromUserId, @PathVariable UUID toUserId,
+            @RequestBody FilterCodeBlockDto filterCodeBlockDto) {
+        return codeBlockService.getAllFilteredCodeBlocksSharedFromUserIdToUserId(
+                fromUserId, toUserId, filterCodeBlockDto).stream()
                 .map(codeBlockEntity -> modelMapper.map(codeBlockEntity, CodeBlockDto.class)).toList();
     }
 }

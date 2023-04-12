@@ -121,6 +121,13 @@ public class CodeBlockServiceImplementation implements CodeBlockService {
                 codeBlockRepository.findAllCodeBlocksByUserIdAndEstimateType(userId, estimateType));
     }
 
+    @Override
+    public List<CodeBlockEntity> getAllFilteredCodeBlocksSharedFromUserIdToUserId(
+            UUID fromUserId, UUID toUserId, FilterCodeBlockDto filterCodeBlockDto) {
+        return filterCodeBlocks(filterCodeBlockDto,
+                codeBlockRepository.findAllCodeBlocksSharedFromUserIdToUserId(fromUserId, toUserId));
+    }
+
     private List<CodeBlockEntity> filterCodeBlocks(FilterCodeBlockDto filterDto, List<CodeBlockEntity> source) {
         if (source.isEmpty())
             return source;

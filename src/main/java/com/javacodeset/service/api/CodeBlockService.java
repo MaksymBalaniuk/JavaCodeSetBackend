@@ -14,4 +14,6 @@ public interface CodeBlockService extends CrudService<CodeBlockEntity, CodeBlock
     List<CodeBlockEntity> getAllFilteredCodeBlocksByUserId(UUID userId, FilterCodeBlockDto filterCodeBlockDto);
     List<CodeBlockEntity> getAllFilteredCodeBlocksByUserIdAndEstimateType(
             UUID userId, EstimateType estimateType, FilterCodeBlockDto filterCodeBlockDto);
+    List<CodeBlockEntity> getAllFilteredCodeBlocksSharedFromUserIdToUserId(
+            UUID fromUserId, UUID toUserId, FilterCodeBlockDto filterCodeBlockDto);
 }
