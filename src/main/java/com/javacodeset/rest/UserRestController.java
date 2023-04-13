@@ -30,6 +30,12 @@ public class UserRestController {
                 modelMapper.map(userService.get(userId), UserDto.class));
     }
 
+    @GetMapping("/get/by-username/{username}")
+    public UserDto getUserByUsername(@PathVariable String username) {
+        return UserResponseCredentialsHidingPolicy.hide(
+                modelMapper.map(userService.getUserByUsername(username), UserDto.class));
+    }
+
     @PatchMapping("/update/{userId}/username/{username}")
     public AuthenticationResponseDto updateUserUsernameById(@PathVariable UUID userId, @PathVariable String username) {
         UserEntity user = userService.updateUserUsername(userId, username);
