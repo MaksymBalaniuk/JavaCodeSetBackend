@@ -38,7 +38,11 @@ public class ShareServiceImplementation implements ShareService {
                         "User with id '%s' does not exist", shareDto.getFromUserId())));
 
         if (Objects.equals(toUser.getId(), fromUser.getId()))
-            throw new BadRequestException("Users cannot be the same");
+            throw new BadRequestException("Can't share to yourself");
+
+        if(shareRepository.existsByToUserIdAndCodeBlockId(shareDto.getToUserId(), shareDto.getCodeBlockId()))
+            throw new BadRequestException(String.format(
+                    "This code block already shared to user with username '%s'", toUser.getUsername()));
 
         CodeBlockEntity codeBlock = codeBlockRepository.findById(shareDto.getCodeBlockId()).orElseThrow(() ->
                 new NotFoundException(String.format(
