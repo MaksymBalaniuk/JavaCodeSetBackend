@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface ShareService extends CrudService<ShareEntity, ShareDto, UUID> {
     List<ShareEntity> getAllSharesToUserId(UUID userId);
+    List<ShareEntity> getAllSharesFromUserId(UUID userId);
 }

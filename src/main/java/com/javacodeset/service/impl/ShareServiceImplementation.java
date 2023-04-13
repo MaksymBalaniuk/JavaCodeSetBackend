@@ -85,4 +85,9 @@ public class ShareServiceImplementation implements ShareService {
     public List<ShareEntity> getAllSharesToUserId(UUID userId) {
         return shareRepository.findAllSharesToUserId(userId);
     }
+
+    @Override
+    public List<ShareEntity> getAllSharesFromUserId(UUID userId) {
+        return shareRepository.findAllSharesFromUserId(userId);
+    }
 }

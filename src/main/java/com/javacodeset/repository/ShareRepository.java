@@ -14,4 +14,8 @@ public interface ShareRepository extends JpaRepository<ShareEntity, UUID> {
     @Query("SELECT share FROM Share share " +
             "WHERE share.toUser.id = ?1")
     List<ShareEntity> findAllSharesToUserId(UUID userId);
+
+    @Query("SELECT share FROM Share share " +
+            "WHERE share.fromUser.id = ?1")
+    List<ShareEntity> findAllSharesFromUserId(UUID userId);
 }
