@@ -33,6 +33,11 @@ public class UserRestController {
                 modelMapper.map(userService.get(userId), UserDto.class));
     }
 
+    @GetMapping("/get/authenticated-user")
+    public UserDto getAuthenticatedUser() {
+        return modelMapper.map(jwtUserDetailsService.getAuthenticatedUser(), UserDto.class);
+    }
+
     @GetMapping("/get/by-username/{username}")
     public UserDto getUserByUsername(@PathVariable String username) {
         return UserResponseCredentialsHidingPolicy.hide(
