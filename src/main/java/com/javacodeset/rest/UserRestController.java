@@ -33,7 +33,7 @@ public class UserRestController {
                 modelMapper.map(userService.get(userId), UserDto.class));
     }
 
-    @GetMapping("/get/authenticated-user")
+    @GetMapping("/authenticated-user/get")
     public UserDto getAuthenticatedUser() {
         return modelMapper.map(jwtUserDetailsService.getAuthenticatedUser(), UserDto.class);
     }
@@ -51,14 +51,14 @@ public class UserRestController {
                         modelMapper.map(userEntity, UserDto.class))).toList();
     }
 
-    @PatchMapping("/update/authenticated-user/username/{username}")
+    @PatchMapping("/authenticated-user/update/username/{username}")
     public AuthenticationResponseDto updateAuthenticatedUserUsername(@PathVariable String username) {
         UserEntity user = jwtUserDetailsService.updateAuthenticatedUserUsername(username);
         String token = jwtProvider.createToken(user.getUsername(), user.getAuthorities());
         return new AuthenticationResponseDto(token, user.getId());
     }
 
-    @PatchMapping("/update/authenticated-user/email/{email}")
+    @PatchMapping("/authenticated-user/update/email/{email}")
     public AuthenticationResponseDto updateAuthenticatedUserEmail(@PathVariable String email) {
         UserEntity user = jwtUserDetailsService.updateAuthenticatedUserEmail(email);
         String token = jwtProvider.createToken(user.getUsername(), user.getAuthorities());
