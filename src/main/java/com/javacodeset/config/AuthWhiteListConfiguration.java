@@ -14,6 +14,7 @@ public class AuthWhiteListConfiguration {
                 "/api/auth/login",
                 "/api/auth/register",
                 "/api/users/get/**",
+                "/api/users/get-all/by-username/**",
                 "/api/tags/get/**",
                 "/api/tags/get-all/by-block-id/**",
                 "/api/blocks/get-all/filtered",

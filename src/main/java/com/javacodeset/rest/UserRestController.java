@@ -13,6 +13,7 @@ import com.javacodeset.service.api.UserService;
 import com.javacodeset.util.PremiumLimitsPolicy;
 import com.javacodeset.util.UserResponseCredentialsHidingPolicy;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -34,6 +35,13 @@ public class UserRestController {
     public UserDto getUserByUsername(@PathVariable String username) {
         return UserResponseCredentialsHidingPolicy.hide(
                 modelMapper.map(userService.getUserByUsername(username), UserDto.class));
+    }
+
+    @GetMapping("/get-all/by-username/{username}")
+    public List<UserDto> searchUsersByUsername(@PathVariable String username) {
+        return userService.searchUsersByUsername(username).stream()
+                .map(userEntity -> UserResponseCredentialsHidingPolicy.hide(
+                        modelMapper.map(userEntity, UserDto.class))).toList();
     }
 
     @PatchMapping("/update/{userId}/username/{username}")

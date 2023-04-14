@@ -95,6 +95,13 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public List<UserEntity> searchUsersByUsername(String username) {
+        return userRepository.findAll().stream()
+                .filter(user -> user.getUsername().toLowerCase().contains(username.toLowerCase()))
+                .toList();
+    }
+
+    @Override
     public Boolean existsUserByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
