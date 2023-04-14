@@ -36,17 +36,11 @@ public class ShareServiceImplementation implements ShareService {
         UserEntity fromUser = userRepository.findById(shareDto.getFromUserId()).orElseThrow(() ->
                 new NotFoundException(String.format(
                         "User with id '%s' does not exist", shareDto.getFromUserId())));
-
-        if (Objects.equals(toUser.getId(), fromUser.getId()))
-            throw new BadRequestException("Can't share to yourself");
-
-        if(shareRepository.existsByToUserIdAndCodeBlockId(shareDto.getToUserId(), shareDto.getCodeBlockId()))
-            throw new BadRequestException(String.format(
-                    "This code block already shared to user with username '%s'", toUser.getUsername()));
-
         CodeBlockEntity codeBlock = codeBlockRepository.findById(shareDto.getCodeBlockId()).orElseThrow(() ->
                 new NotFoundException(String.format(
                         "CodeBlock with id '%s' does not exist", shareDto.getCodeBlockId())));
+
+        validateCreationShare(toUser, fromUser, codeBlock);
 
         ShareEntity share = new ShareEntity();
         share.setId(null);
@@ -61,6 +55,16 @@ public class ShareServiceImplementation implements ShareService {
         codeBlock.getShares().add(share);
         codeBlockRepository.save(codeBlock);
         return share;
+    }
+
+    private void validateCreationShare(UserEntity toUser, UserEntity fromUser, CodeBlockEntity codeBlock) {
+        if (Objects.equals(toUser.getId(), fromUser.getId()))
+            throw new BadRequestException("Can't share to yourself");
+
+        if(shareRepository.existsByToUserIdAndFromUserIdAndCodeBlockId(
+                toUser.getId(), fromUser.getId(), codeBlock.getId()))
+            throw new BadRequestException(String.format(
+                    "This code block already shared by you to user with username '%s'", toUser.getUsername()));
     }
 
     @Override
@@ -87,11 +91,11 @@ public class ShareServiceImplementation implements ShareService {
 
     @Override
     public List<ShareEntity> getAllSharesToUserId(UUID userId) {
-        return shareRepository.findAllSharesToUserId(userId);
+        return shareRepository.findAllByToUserId(userId);
     }
 
     @Override
     public List<ShareEntity> getAllSharesFromUserId(UUID userId) {
-        return shareRepository.findAllSharesFromUserId(userId);
+        return shareRepository.findAllByFromUserId(userId);
     }
 }

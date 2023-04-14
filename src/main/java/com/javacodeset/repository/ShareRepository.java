@@ -10,14 +10,7 @@ import java.util.UUID;
 
 @Repository
 public interface ShareRepository extends JpaRepository<ShareEntity, UUID> {
-
-    Boolean existsByToUserIdAndCodeBlockId(UUID toUserId, UUID codeBlockId);
-
-    @Query("SELECT share FROM Share share " +
-            "WHERE share.toUser.id = ?1")
-    List<ShareEntity> findAllSharesToUserId(UUID userId);
-
-    @Query("SELECT share FROM Share share " +
-            "WHERE share.fromUser.id = ?1")
-    List<ShareEntity> findAllSharesFromUserId(UUID userId);
+    Boolean existsByToUserIdAndFromUserIdAndCodeBlockId(UUID toUserId, UUID fromUserId, UUID codeBlockId);
+    List<ShareEntity> findAllByToUserId(UUID userId);
+    List<ShareEntity> findAllByFromUserId(UUID userId);
 }
