@@ -1,5 +1,6 @@
 package com.javacodeset.security.jwt;
 
+import com.javacodeset.security.userdetails.JwtUserDetailsService;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -32,7 +32,7 @@ public class JwtProvider {
     @Value("${jwt.token.expired}")
     private long validityInMilliseconds;
 
-    private final UserDetailsService userDetailsService;
+    private final JwtUserDetailsService jwtUserDetailsService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -62,7 +62,7 @@ public class JwtProvider {
     public Authentication getAuthentication(String token) {
         UserDetails userDetails;
         try {
-            userDetails = userDetailsService.loadUserByUsername(getUsernameFromToken(token));
+            userDetails = jwtUserDetailsService.loadUserByUsername(getUsernameFromToken(token));
         } catch (UsernameNotFoundException ex) {
             throw new JwtAuthenticationException("JWT is invalid, user not found");
         }

@@ -1,5 +1,6 @@
 package com.javacodeset.rest;
 
+import com.javacodeset.security.userdetails.JwtUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.UUID;
 public class UserRestController {
 
     private final UserService userService;
+    private final JwtUserDetailsService jwtUserDetailsService;
     private final ModelMapper modelMapper;
     private final JwtProvider jwtProvider;
 
@@ -34,6 +36,11 @@ public class UserRestController {
     public UserDto getUserByUsername(@PathVariable String username) {
         return UserResponseCredentialsHidingPolicy.hide(
                 modelMapper.map(userService.getUserByUsername(username), UserDto.class));
+    }
+
+    @GetMapping("/get/authenticated")
+    public UserDto getRawAuthenticatedUser() {
+        return modelMapper.map(jwtUserDetailsService.getAuthenticatedUser(), UserDto.class);
     }
 
     @PatchMapping("/update/{userId}/username/{username}")
