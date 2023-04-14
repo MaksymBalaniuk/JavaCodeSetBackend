@@ -1,5 +1,6 @@
 package com.javacodeset.security.userdetails;
 
+import com.javacodeset.exception.BadRequestException;
 import com.javacodeset.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -34,5 +35,29 @@ public class JwtUserDetailsServiceImplementation implements JwtUserDetailsServic
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByUsername(username).orElseThrow(() ->
                 new NotFoundException(String.format("User with username '%s' does not exist", username)));
+    }
+
+    @Override
+    @Transactional
+    public UserEntity updateAuthenticatedUserUsername(String username) {
+        UserEntity user = getAuthenticatedUser();
+
+        if (userRepository.existsByUsername(username))
+            throw new BadRequestException(String.format("User with username '%s' already exist", username));
+
+        user.setUsername(username);
+        return userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public UserEntity updateAuthenticatedUserEmail(String email) {
+        UserEntity user = getAuthenticatedUser();
+
+        if (userRepository.existsByEmail(email))
+            throw new BadRequestException(String.format("User with email '%s' already exist", email));
+
+        user.setEmail(email);
+        return userRepository.save(user);
     }
 }

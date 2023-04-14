@@ -113,19 +113,6 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     @Transactional
-    public UserEntity updateUserUsername(UUID userId, String username) {
-        UserEntity user = userRepository.findById(userId).orElseThrow(() ->
-                new NotFoundException(String.format("User with id '%s' does not exist", userId)));
-
-        if (userRepository.existsByUsername(username))
-            throw new BadRequestException(String.format("User with username '%s' already exist", username));
-
-        user.setUsername(username);
-        return userRepository.save(user);
-    }
-
-    @Override
-    @Transactional
     public UserEntity updateUserPremium(UUID userId, UserPremium userPremium) {
         UserEntity user = userRepository.findById(userId).orElseThrow(() ->
                 new NotFoundException(String.format("User with id '%s' does not exist", userId)));

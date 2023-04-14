@@ -13,7 +13,6 @@ public interface UserService extends CrudService<UserEntity, UserDto, UUID> {
     List<UserEntity> searchUsersByUsername(String username);
     Boolean existsUserByUsername(String username);
     Boolean existsUserByEmail(String email);
-    UserEntity updateUserUsername(UUID userId, String username);
     UserEntity updateUserPremium(UUID userId, UserPremium userPremium);
     UserEntity activateUserById(UUID userId);
     UserEntity banUserById(UUID userId);

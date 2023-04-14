@@ -1,5 +1,6 @@
 package com.javacodeset.rest;
 
+import com.javacodeset.security.userdetails.JwtUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import java.util.UUID;
 public class UserRestController {
 
     private final UserService userService;
+    private final JwtUserDetailsService jwtUserDetailsService;
     private final ModelMapper modelMapper;
     private final JwtProvider jwtProvider;
 
@@ -44,9 +46,16 @@ public class UserRestController {
                         modelMapper.map(userEntity, UserDto.class))).toList();
     }
 
-    @PatchMapping("/update/{userId}/username/{username}")
-    public AuthenticationResponseDto updateUserUsernameById(@PathVariable UUID userId, @PathVariable String username) {
-        UserEntity user = userService.updateUserUsername(userId, username);
+    @PatchMapping("/update/authenticated-user/username/{username}")
+    public AuthenticationResponseDto updateAuthenticatedUserUsername(@PathVariable String username) {
+        UserEntity user = jwtUserDetailsService.updateAuthenticatedUserUsername(username);
+        String token = jwtProvider.createToken(user.getUsername(), user.getAuthorities());
+        return new AuthenticationResponseDto(token, user.getId());
+    }
+
+    @PatchMapping("/update/authenticated-user/email/{email}")
+    public AuthenticationResponseDto updateAuthenticatedUserEmail(@PathVariable String email) {
+        UserEntity user = jwtUserDetailsService.updateAuthenticatedUserEmail(email);
         String token = jwtProvider.createToken(user.getUsername(), user.getAuthorities());
         return new AuthenticationResponseDto(token, user.getId());
     }
