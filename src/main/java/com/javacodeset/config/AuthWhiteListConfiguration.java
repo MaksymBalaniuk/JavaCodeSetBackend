@@ -11,7 +11,8 @@ public class AuthWhiteListConfiguration {
     @Qualifier("authWhiteList")
     public String[] getAuthWhiteList() {
         return new String[] {
-                "/api/auth/**",
+                "/api/auth/login",
+                "/api/auth/register",
                 "/api/users/get/**",
                 "/api/tags/get/**",
                 "/api/tags/get-all/by-block-id/**",

@@ -1,10 +1,10 @@
 package com.javacodeset.rest;
 
+import com.javacodeset.dto.UserDto;
+import com.javacodeset.security.userdetails.JwtUserDetailsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.*;
 import com.javacodeset.dto.auth.AuthenticationRequestDto;
 import com.javacodeset.dto.auth.AuthenticationResponseDto;
 import com.javacodeset.dto.auth.RegisterRequestDto;
@@ -17,6 +17,8 @@ import com.javacodeset.service.api.AuthenticationService;
 public class AuthenticationRestController {
 
     private final AuthenticationService authenticationService;
+    private final JwtUserDetailsService jwtUserDetailsService;
+    private final ModelMapper modelMapper;
 
     @PostMapping("/login")
     public AuthenticationResponseDto login(@RequestBody AuthenticationRequestDto requestDto) {
@@ -26,5 +28,10 @@ public class AuthenticationRestController {
     @PostMapping("/register")
     public RegisterResponseDto register(@RequestBody RegisterRequestDto requestDto) {
         return authenticationService.register(requestDto);
+    }
+
+    @GetMapping("/get/authenticated-user")
+    public UserDto getAuthenticatedUser() {
+        return modelMapper.map(jwtUserDetailsService.getAuthenticatedUser(), UserDto.class);
     }
 }
