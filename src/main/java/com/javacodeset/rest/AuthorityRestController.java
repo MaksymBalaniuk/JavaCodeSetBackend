@@ -3,10 +3,7 @@ package com.javacodeset.rest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.javacodeset.dto.permission.UserPermissionsDto;
 import com.javacodeset.service.api.AuthorityService;
 
@@ -27,5 +24,11 @@ public class AuthorityRestController {
     @GetMapping("/get/{userId}/is-admin")
     public ResponseEntity<Boolean> isUserHasAdminAuthority(@PathVariable UUID userId) {
         return new ResponseEntity<>(authorityService.isUserHasAdminAuthority(userId), HttpStatus.OK);
+    }
+
+    @PostMapping("/add/authority-to-user/admin/{userId}")
+    public ResponseEntity<Object> addAdminAuthorityToUser(@PathVariable UUID userId) {
+        authorityService.addAdminAuthorityToUser(userId);
+        return ResponseEntity.noContent().build();
     }
 }

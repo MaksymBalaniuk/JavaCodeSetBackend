@@ -12,7 +12,8 @@ public class AdminAccessListConfiguration {
     public String[] getAdminAccessList() {
         return new String[] {
                 "/api/users/update/{userId}/activate",
-                "/api/users/update/{userId}/ban"
+                "/api/users/update/{userId}/ban",
+                "/api/authorities/add/authority-to-user/admin/**"
         };
     }
 }

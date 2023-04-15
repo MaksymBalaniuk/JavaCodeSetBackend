@@ -7,4 +7,5 @@ import java.util.UUID;
 public interface AuthorityService {
     Boolean isUserHasAdminAuthority(UUID userId);
     UserPermissionsDto getUserPermissions(UUID userId);
+    void addAdminAuthorityToUser(UUID userId);
 }
