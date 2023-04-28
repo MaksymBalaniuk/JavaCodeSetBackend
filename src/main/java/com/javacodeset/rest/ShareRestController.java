@@ -4,6 +4,7 @@ import com.javacodeset.dto.ShareDto;
 import com.javacodeset.service.api.ShareService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,12 @@ public class ShareRestController {
     @GetMapping("/get/{shareId}")
     public ShareDto getShareById(@PathVariable UUID shareId) {
         return modelMapper.map(shareService.get(shareId), ShareDto.class);
+    }
+
+    @DeleteMapping("/delete/{shareId}")
+    public ResponseEntity<Object> deleteShareById(@PathVariable UUID shareId) {
+        shareService.delete(shareId);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/get-all/to-user/{userId}")
