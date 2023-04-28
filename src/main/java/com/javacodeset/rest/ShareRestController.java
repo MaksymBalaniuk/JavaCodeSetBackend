@@ -38,4 +38,10 @@ public class ShareRestController {
         return shareService.getAllSharesFromUserId(userId).stream()
                 .map(shareEntity -> modelMapper.map(shareEntity, ShareDto.class)).toList();
     }
+
+    @GetMapping("/get-all/by-block-id/{codeBlockId}")
+    public List<ShareDto> getAllSharesOfCodeBlockId(@PathVariable UUID codeBlockId) {
+        return shareService.getAllSharesOfCodeBlockId(codeBlockId).stream()
+                .map(shareEntity -> modelMapper.map(shareEntity, ShareDto.class)).toList();
+    }
 }

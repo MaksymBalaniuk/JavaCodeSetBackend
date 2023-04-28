@@ -13,4 +13,5 @@ public interface ShareRepository extends JpaRepository<ShareEntity, UUID> {
     Boolean existsByToUserIdAndFromUserIdAndCodeBlockId(UUID toUserId, UUID fromUserId, UUID codeBlockId);
     List<ShareEntity> findAllByToUserId(UUID userId);
     List<ShareEntity> findAllByFromUserId(UUID userId);
+    List<ShareEntity> findAllByCodeBlockId(UUID codeBlockId);
 }
