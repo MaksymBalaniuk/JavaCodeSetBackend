@@ -30,7 +30,7 @@ public class CommentRepositoryTest {
 
     @Test
     public void findAllByCodeBlockId_commentEntityExist_shodReturnNotEmptyCommentEntityList() {
-        UserEntity userEntity = EntityExampleStorage.getUserEntity();
+        UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
         CodeBlockEntity codeBlockEntity = EntityExampleStorage.getCodeBlockEntity(userEntity);
         codeBlockRepository.save(codeBlockEntity);
@@ -46,7 +46,7 @@ public class CommentRepositoryTest {
 
     @Test
     public void findAllByCodeBlockId_commentEntityNotExist_shodReturnEmptyCommentEntityList() {
-        UserEntity userEntity = EntityExampleStorage.getUserEntity();
+        UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
         CodeBlockEntity codeBlockEntity = EntityExampleStorage.getCodeBlockEntity(userEntity);
         codeBlockRepository.save(codeBlockEntity);

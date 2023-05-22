@@ -22,7 +22,7 @@ public class AuthorityRepositoryTest {
 
     @Test
     public void findByName_authorityEntityExist_shodReturnPresentOptionalOfAuthorityEntity() {
-        AuthorityEntity authorityEntity = EntityExampleStorage.getAuthorityEntity();
+        AuthorityEntity authorityEntity = EntityExampleStorage.getAuthorityEntity("ROLE_SOME");
         authorityRepository.save(authorityEntity);
 
         Optional<AuthorityEntity> actual = authorityRepository.findByName(authorityEntity.getName());

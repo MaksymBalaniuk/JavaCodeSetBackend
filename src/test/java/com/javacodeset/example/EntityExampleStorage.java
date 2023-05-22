@@ -5,17 +5,17 @@ import com.javacodeset.enumeration.EstimateType;
 
 public final class EntityExampleStorage {
 
-    public static AuthorityEntity getAuthorityEntity() {
+    public static AuthorityEntity getAuthorityEntity(String name) {
         AuthorityEntity authorityEntity = new AuthorityEntity();
-        authorityEntity.setName("ROLE_SOME");
+        authorityEntity.setName(name);
         return authorityEntity;
     }
 
-    public static UserEntity getUserEntity() {
+    public static UserEntity getUserEntity(String username, String password, String email) {
         UserEntity userEntity = new UserEntity();
-        userEntity.setUsername("username");
-        userEntity.setPassword("12345678");
-        userEntity.setEmail("username@gmail.com");
+        userEntity.setUsername(username);
+        userEntity.setPassword(password);
+        userEntity.setEmail(email);
         return userEntity;
     }
 

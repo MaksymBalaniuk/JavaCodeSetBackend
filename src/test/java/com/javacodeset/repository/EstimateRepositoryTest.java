@@ -29,7 +29,7 @@ public class EstimateRepositoryTest {
 
     @Test
     public void findAllByCodeBlockId_estimateEntityExist_shodReturnNotEmptyEstimateEntityList() {
-        UserEntity userEntity = EntityExampleStorage.getUserEntity();
+        UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
         CodeBlockEntity codeBlockEntity = EntityExampleStorage.getCodeBlockEntity(userEntity);
         codeBlockRepository.save(codeBlockEntity);
@@ -44,7 +44,7 @@ public class EstimateRepositoryTest {
 
     @Test
     public void findAllByCodeBlockId_estimateEntityNotExist_shodReturnEmptyEstimateEntityList() {
-        UserEntity userEntity = EntityExampleStorage.getUserEntity();
+        UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
         CodeBlockEntity codeBlockEntity = EntityExampleStorage.getCodeBlockEntity(userEntity);
 
