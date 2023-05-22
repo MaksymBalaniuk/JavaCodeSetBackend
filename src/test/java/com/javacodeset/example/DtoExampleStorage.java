@@ -1,6 +1,7 @@
 package com.javacodeset.example;
 
 import com.javacodeset.dto.CodeBlockDto;
+import com.javacodeset.dto.CommentDto;
 import com.javacodeset.dto.auth.AuthenticationRequestDto;
 import com.javacodeset.dto.auth.RegisterRequestDto;
 import com.javacodeset.dto.filter.FilterCodeBlockDto;
@@ -37,5 +38,12 @@ public final class DtoExampleStorage {
         filterCodeBlockDto.setFilterContent(false);
         filterCodeBlockDto.setFilterTags(false);
         return filterCodeBlockDto;
+    }
+
+    public static CommentDto getCommentDto(UUID userId, UUID codeBlockId) {
+        CommentDto commentDto = new CommentDto();
+        commentDto.setUserId(userId);
+        commentDto.setCodeBlockId(codeBlockId);
+        return commentDto;
     }
 }
