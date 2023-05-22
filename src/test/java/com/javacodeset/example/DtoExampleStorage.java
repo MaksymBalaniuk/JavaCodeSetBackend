@@ -2,9 +2,11 @@ package com.javacodeset.example;
 
 import com.javacodeset.dto.CodeBlockDto;
 import com.javacodeset.dto.CommentDto;
+import com.javacodeset.dto.EstimateDto;
 import com.javacodeset.dto.auth.AuthenticationRequestDto;
 import com.javacodeset.dto.auth.RegisterRequestDto;
 import com.javacodeset.dto.filter.FilterCodeBlockDto;
+import com.javacodeset.enumeration.EstimateType;
 
 import java.util.UUID;
 
@@ -45,5 +47,12 @@ public final class DtoExampleStorage {
         commentDto.setUserId(userId);
         commentDto.setCodeBlockId(codeBlockId);
         return commentDto;
+    }
+
+    public static EstimateDto getEstimateDto(UUID userId, UUID codeBlockId) {
+        EstimateDto estimateDto = new EstimateDto();
+        estimateDto.setUserId(userId);
+        estimateDto.setCodeBlockId(codeBlockId);
+        return estimateDto;
     }
 }
