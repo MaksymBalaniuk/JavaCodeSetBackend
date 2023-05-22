@@ -47,4 +47,10 @@ public final class EntityExampleStorage {
         commentEntity.setCodeBlock(codeBlockEntity);
         return commentEntity;
     }
+
+    public static TagEntity getTagEntity(String name) {
+        TagEntity tagEntity = new TagEntity();
+        tagEntity.setName(name);
+        return tagEntity;
+    }
 }
