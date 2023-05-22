@@ -40,4 +40,11 @@ public final class EntityExampleStorage {
         shareEntity.setCodeBlock(codeBlock);
         return shareEntity;
     }
+
+    public static CommentEntity getCommentEntity(UserEntity userEntity, CodeBlockEntity codeBlockEntity) {
+        CommentEntity commentEntity = new CommentEntity();
+        commentEntity.setUser(userEntity);
+        commentEntity.setCodeBlock(codeBlockEntity);
+        return commentEntity;
+    }
 }
