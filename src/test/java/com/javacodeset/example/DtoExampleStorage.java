@@ -3,6 +3,7 @@ package com.javacodeset.example;
 import com.javacodeset.dto.CodeBlockDto;
 import com.javacodeset.dto.CommentDto;
 import com.javacodeset.dto.EstimateDto;
+import com.javacodeset.dto.TagDto;
 import com.javacodeset.dto.auth.AuthenticationRequestDto;
 import com.javacodeset.dto.auth.RegisterRequestDto;
 import com.javacodeset.dto.executor.JavaCodeExecutionRequestDto;
@@ -55,6 +56,12 @@ public final class DtoExampleStorage {
         estimateDto.setUserId(userId);
         estimateDto.setCodeBlockId(codeBlockId);
         return estimateDto;
+    }
+
+    public static TagDto getTagDto(String name) {
+        TagDto tagDto = new TagDto();
+        tagDto.setName(name);
+        return tagDto;
     }
 
     public static JavaCodeExecutionRequestDto getJavaCodeExecutionRequestDto() {
