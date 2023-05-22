@@ -21,7 +21,7 @@ public class TagRepositoryTest {
     private TagRepository tagRepository;
 
     @Test
-    public void findByName_tagEntityExist_shodReturnPresentOptionalOfTagEntity() {
+    public void findByName_tagEntityExist_shouldReturnPresentOptionalOfTagEntity() {
         TagEntity tagEntity = EntityExampleStorage.getTagEntity("#stream");
         tagRepository.save(tagEntity);
 
@@ -31,13 +31,13 @@ public class TagRepositoryTest {
     }
 
     @Test
-    public void findByName_tagEntityNotExist_shodReturnNotPresentOptionalOfUserEntity() {
+    public void findByName_tagEntityNotExist_shouldReturnNotPresentOptionalOfUserEntity() {
         Optional<TagEntity> actual = tagRepository.findByName("#stream");
         assertFalse(actual.isPresent());
     }
 
     @Test
-    public void existsByName_tagEntityExist_shodReturnTrue() {
+    public void existsByName_tagEntityExist_shouldReturnTrue() {
         TagEntity tagEntity = EntityExampleStorage.getTagEntity("#stream");
         tagRepository.save(tagEntity);
 
@@ -47,7 +47,7 @@ public class TagRepositoryTest {
     }
 
     @Test
-    public void existsByName_tagEntityNotExist_shodReturnFalse() {
+    public void existsByName_tagEntityNotExist_shouldReturnFalse() {
         Boolean actual = tagRepository.existsByName("#stream");
         assertFalse(actual);
     }

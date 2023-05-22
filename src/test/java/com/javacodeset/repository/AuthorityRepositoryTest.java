@@ -21,7 +21,7 @@ public class AuthorityRepositoryTest {
     private AuthorityRepository authorityRepository;
 
     @Test
-    public void findByName_authorityEntityExist_shodReturnPresentOptionalOfAuthorityEntity() {
+    public void findByName_authorityEntityExist_shouldReturnPresentOptionalOfAuthorityEntity() {
         AuthorityEntity authorityEntity = EntityExampleStorage.getAuthorityEntity("ROLE_SOME");
         authorityRepository.save(authorityEntity);
 
@@ -31,7 +31,7 @@ public class AuthorityRepositoryTest {
     }
 
     @Test
-    public void findByName_authorityEntityNotExist_shodReturnNotPresentOptionalOfAuthorityEntity() {
+    public void findByName_authorityEntityNotExist_shouldReturnNotPresentOptionalOfAuthorityEntity() {
         Optional<AuthorityEntity> actual = authorityRepository.findByName("ROLE_SOME");
         assertFalse(actual.isPresent());
     }

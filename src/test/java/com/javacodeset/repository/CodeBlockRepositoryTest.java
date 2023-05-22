@@ -34,7 +34,7 @@ public class CodeBlockRepositoryTest {
     private ShareRepository shareRepository;
 
     @Test
-    public void findAllByUserId_codeBlockEntityExist_shodReturnNotEmptyCodeBlockEntityList() {
+    public void findAllByUserId_codeBlockEntityExist_shouldReturnNotEmptyCodeBlockEntityList() {
         UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
         CodeBlockEntity codeBlockEntity = EntityExampleStorage.getCodeBlockEntity(userEntity);
@@ -47,7 +47,7 @@ public class CodeBlockRepositoryTest {
     }
 
     @Test
-    public void findAllByUserId_codeBlockEntityNotExist_shodReturnEmptyCodeBlockEntityList() {
+    public void findAllByUserId_codeBlockEntityNotExist_shouldReturnEmptyCodeBlockEntityList() {
         UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
 
@@ -57,7 +57,7 @@ public class CodeBlockRepositoryTest {
     }
 
     @Test
-    public void findAllCodeBlocksByUserIdAndEstimateType_codeBlockEntityExist_shodReturnNotEmptyCodeBlockEntityList() {
+    public void findAllCodeBlocksByUserIdAndEstimateType_codeBlockEntityExist_shouldReturnNotEmptyCodeBlockEntityList() {
         UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
         CodeBlockEntity codeBlockEntity = EntityExampleStorage.getCodeBlockEntity(userEntity);
@@ -74,7 +74,7 @@ public class CodeBlockRepositoryTest {
     }
 
     @Test
-    public void findAllCodeBlocksByUserIdAndEstimateType_codeBlockEntityNotExist_shodReturnEmptyCodeBlockEntityList() {
+    public void findAllCodeBlocksByUserIdAndEstimateType_codeBlockEntityNotExist_shouldReturnEmptyCodeBlockEntityList() {
         UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
 
@@ -85,7 +85,7 @@ public class CodeBlockRepositoryTest {
     }
 
     @Test
-    public void findAllCodeBlocksSharedFromUserIdToUserId_codeBlockEntityExist_shodReturnNotEmptyCodeBlockEntityList() {
+    public void findAllCodeBlocksSharedFromUserIdToUserId_codeBlockEntityExist_shouldReturnNotEmptyCodeBlockEntityList() {
         UserEntity toUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(toUserEntity);
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("2", "2", "2@gmail.com");
@@ -104,7 +104,7 @@ public class CodeBlockRepositoryTest {
     }
 
     @Test
-    public void findAllCodeBlocksSharedFromUserIdToUserId_codeBlockEntityNotExist_shodReturnEmptyCodeBlockEntityList() {
+    public void findAllCodeBlocksSharedFromUserIdToUserId_codeBlockEntityNotExist_shouldReturnEmptyCodeBlockEntityList() {
         UserEntity toUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(toUserEntity);
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("2", "2", "2@gmail.com");

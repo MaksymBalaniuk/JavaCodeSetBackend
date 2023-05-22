@@ -28,7 +28,7 @@ public class ShareRepositoryTest {
     private CodeBlockRepository codeBlockRepository;
 
     @Test
-    public void existsByToUserIdAndFromUserIdAndCodeBlockId_shareEntityExist_shodReturnTrue() {
+    public void existsByToUserIdAndFromUserIdAndCodeBlockId_shareEntityExist_shouldReturnTrue() {
         UserEntity toUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(toUserEntity);
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("2", "2", "2@gmail.com");
@@ -45,7 +45,7 @@ public class ShareRepositoryTest {
     }
 
     @Test
-    public void existsByToUserIdAndFromUserIdAndCodeBlockId_shareEntityNotExist_shodReturnFalse() {
+    public void existsByToUserIdAndFromUserIdAndCodeBlockId_shareEntityNotExist_shouldReturnFalse() {
         UserEntity toUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(toUserEntity);
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("2", "2", "2@gmail.com");
@@ -60,7 +60,7 @@ public class ShareRepositoryTest {
     }
 
     @Test
-    public void findAllByToUserId_shareEntityExist_shodReturnNotEmptyShareEntityList() {
+    public void findAllByToUserId_shareEntityExist_shouldReturnNotEmptyShareEntityList() {
         UserEntity toUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(toUserEntity);
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("2", "2", "2@gmail.com");
@@ -77,7 +77,7 @@ public class ShareRepositoryTest {
     }
 
     @Test
-    public void findAllByToUserId_shareEntityNotExist_shodReturnEmptyShareEntityList() {
+    public void findAllByToUserId_shareEntityNotExist_shouldReturnEmptyShareEntityList() {
         UserEntity toUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(toUserEntity);
 
@@ -87,7 +87,7 @@ public class ShareRepositoryTest {
     }
 
     @Test
-    public void findAllByFromUserId_shareEntityExist_shodReturnNotEmptyShareEntityList() {
+    public void findAllByFromUserId_shareEntityExist_shouldReturnNotEmptyShareEntityList() {
         UserEntity toUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(toUserEntity);
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("2", "2", "2@gmail.com");
@@ -104,7 +104,7 @@ public class ShareRepositoryTest {
     }
 
     @Test
-    public void findAllByFromUserId_shareEntityNotExist_shodReturnEmptyShareEntityList() {
+    public void findAllByFromUserId_shareEntityNotExist_shouldReturnEmptyShareEntityList() {
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(fromUserEntity);
 
@@ -114,7 +114,7 @@ public class ShareRepositoryTest {
     }
 
     @Test
-    public void findAllByCodeBlockId_shareEntityExist_shodReturnNotEmptyShareEntityList() {
+    public void findAllByCodeBlockId_shareEntityExist_shouldReturnNotEmptyShareEntityList() {
         UserEntity toUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(toUserEntity);
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("2", "2", "2@gmail.com");
@@ -131,7 +131,7 @@ public class ShareRepositoryTest {
     }
 
     @Test
-    public void findAllByCodeBlockId_shareEntityNotExist_shodReturnEmptyShareEntityList() {
+    public void findAllByCodeBlockId_shareEntityNotExist_shouldReturnEmptyShareEntityList() {
         UserEntity fromUserEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(fromUserEntity);
         CodeBlockEntity codeBlockEntity = EntityExampleStorage.getCodeBlockEntity(fromUserEntity);

@@ -21,7 +21,7 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    public void findByUsername_userEntityExist_shodReturnPresentOptionalOfUserEntity() {
+    public void findByUsername_userEntityExist_shouldReturnPresentOptionalOfUserEntity() {
         UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
 
@@ -31,13 +31,13 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void findByUsername_userEntityNotExist_shodReturnNotPresentOptionalOfUserEntity() {
+    public void findByUsername_userEntityNotExist_shouldReturnNotPresentOptionalOfUserEntity() {
         Optional<UserEntity> actual = userRepository.findByUsername("1");
         assertFalse(actual.isPresent());
     }
 
     @Test
-    public void existsByUsername_userEntityExist_shodReturnTrue() {
+    public void existsByUsername_userEntityExist_shouldReturnTrue() {
         UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
 
@@ -47,13 +47,13 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void existsByUsername_userEntityNotExist_shodReturnFalse() {
+    public void existsByUsername_userEntityNotExist_shouldReturnFalse() {
         Boolean actual = userRepository.existsByUsername("1");
         assertFalse(actual);
     }
 
     @Test
-    public void existsByEmail_userEntityExist_shodReturnTrue() {
+    public void existsByEmail_userEntityExist_shouldReturnTrue() {
         UserEntity userEntity = EntityExampleStorage.getUserEntity("1", "1", "1@gmail.com");
         userRepository.save(userEntity);
 
@@ -63,7 +63,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void existsByEmail_userEntityNotExist_shodReturnFalse() {
+    public void existsByEmail_userEntityNotExist_shouldReturnFalse() {
         Boolean actual = userRepository.existsByEmail("1@gmail.com");
         assertFalse(actual);
     }
