@@ -5,6 +5,7 @@ import com.javacodeset.dto.CommentDto;
 import com.javacodeset.dto.EstimateDto;
 import com.javacodeset.dto.auth.AuthenticationRequestDto;
 import com.javacodeset.dto.auth.RegisterRequestDto;
+import com.javacodeset.dto.executor.JavaCodeExecutionRequestDto;
 import com.javacodeset.dto.filter.FilterCodeBlockDto;
 import com.javacodeset.enumeration.EstimateType;
 
@@ -54,5 +55,12 @@ public final class DtoExampleStorage {
         estimateDto.setUserId(userId);
         estimateDto.setCodeBlockId(codeBlockId);
         return estimateDto;
+    }
+
+    public static JavaCodeExecutionRequestDto getJavaCodeExecutionRequestDto() {
+        JavaCodeExecutionRequestDto javaCodeExecutionRequestDto = new JavaCodeExecutionRequestDto();
+        javaCodeExecutionRequestDto.setJavaCode("public static void main(String[] args) {}");
+        javaCodeExecutionRequestDto.setArgs(new String[] {});
+        return javaCodeExecutionRequestDto;
     }
 }
