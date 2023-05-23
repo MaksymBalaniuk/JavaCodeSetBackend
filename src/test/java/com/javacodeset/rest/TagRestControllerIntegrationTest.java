@@ -97,7 +97,7 @@ public class TagRestControllerIntegrationTest {
                 endpoint, HttpMethod.GET, new HttpEntity<>(headers), TagDto.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(Objects.requireNonNull(response.getBody()).getId());
+        assertEquals(tagEntity.getId(), Objects.requireNonNull(response.getBody()).getId());
     }
 
     @Test
