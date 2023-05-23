@@ -1,7 +1,6 @@
 package com.javacodeset.util;
 
 import com.javacodeset.entity.AuthorityEntity;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
