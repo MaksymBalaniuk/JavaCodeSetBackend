@@ -1,14 +1,10 @@
 package com.javacodeset.example;
 
-import com.javacodeset.dto.CodeBlockDto;
-import com.javacodeset.dto.CommentDto;
-import com.javacodeset.dto.EstimateDto;
-import com.javacodeset.dto.TagDto;
+import com.javacodeset.dto.*;
 import com.javacodeset.dto.auth.AuthenticationRequestDto;
 import com.javacodeset.dto.auth.RegisterRequestDto;
 import com.javacodeset.dto.executor.JavaCodeExecutionRequestDto;
 import com.javacodeset.dto.filter.FilterCodeBlockDto;
-import com.javacodeset.enumeration.EstimateType;
 
 import java.util.UUID;
 
@@ -62,6 +58,14 @@ public final class DtoExampleStorage {
         TagDto tagDto = new TagDto();
         tagDto.setName(name);
         return tagDto;
+    }
+
+    public static UserDto getUserDto(String username, String password, String email) {
+        UserDto userDto = new UserDto();
+        userDto.setUsername(username);
+        userDto.setPassword(password);
+        userDto.setEmail(email);
+        return userDto;
     }
 
     public static JavaCodeExecutionRequestDto getJavaCodeExecutionRequestDto() {
