@@ -60,6 +60,14 @@ public final class DtoExampleStorage {
         return tagDto;
     }
 
+    public static ShareDto getShareDto(UUID toUserId, UUID fromUserId, UUID codeBlockId) {
+        ShareDto shareDto = new ShareDto();
+        shareDto.setToUserId(toUserId);
+        shareDto.setFromUserId(fromUserId);
+        shareDto.setCodeBlockId(codeBlockId);
+        return shareDto;
+    }
+
     public static UserDto getUserDto(String username, String password, String email) {
         UserDto userDto = new UserDto();
         userDto.setUsername(username);
