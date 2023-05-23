@@ -49,4 +49,34 @@ public final class RestControllerIntegrationTestUtils {
         userRepository.save(userEntity);
         authorityRepository.save(adminAuthority);
     }
+
+    public static void grantDeveloperAuthority(
+            UserEntity userEntity, UserRepository userRepository, AuthorityRepository authorityRepository) {
+        AuthorityEntity databaseDeveloperAuthority =
+                authorityRepository.findByName("ROLE_DEVELOPER").orElseThrow();
+
+        AuthorityEntity developerAuthority = new AuthorityEntity();
+        developerAuthority.setId(databaseDeveloperAuthority.getId());
+        developerAuthority.setName(databaseDeveloperAuthority.getName());
+
+        userEntity.getAuthorities().add(developerAuthority);
+        developerAuthority.getUsers().add(userEntity);
+        userRepository.save(userEntity);
+        authorityRepository.save(developerAuthority);
+    }
+
+    public static void removeDeveloperAuthority(
+            UserEntity userEntity, UserRepository userRepository, AuthorityRepository authorityRepository) {
+        AuthorityEntity databaseDeveloperAuthority =
+                authorityRepository.findByName("ROLE_DEVELOPER").orElseThrow();
+
+        AuthorityEntity developerAuthority = new AuthorityEntity();
+        developerAuthority.setId(databaseDeveloperAuthority.getId());
+        developerAuthority.setName(databaseDeveloperAuthority.getName());
+
+        userEntity.getAuthorities().remove(developerAuthority);
+        developerAuthority.getUsers().remove(userEntity);
+        userRepository.save(userEntity);
+        authorityRepository.save(developerAuthority);
+    }
 }
