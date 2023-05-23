@@ -5,7 +5,6 @@ import com.javacodeset.entity.UserEntity;
 import com.javacodeset.repository.AuthorityRepository;
 import com.javacodeset.repository.UserRepository;
 import com.javacodeset.security.jwt.JwtProvider;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 
 public final class RestControllerIntegrationTestUtils {

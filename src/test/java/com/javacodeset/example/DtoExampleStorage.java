@@ -40,6 +40,15 @@ public final class DtoExampleStorage {
         return filterCodeBlockDto;
     }
 
+    public static FilterCodeBlockDto getFilterCodeBlockDtoAllFiltersOn() {
+        FilterCodeBlockDto filterCodeBlockDto = new FilterCodeBlockDto();
+        filterCodeBlockDto.setFilterTitle(true);
+        filterCodeBlockDto.setFilterDescription(true);
+        filterCodeBlockDto.setFilterContent(true);
+        filterCodeBlockDto.setFilterTags(true);
+        return filterCodeBlockDto;
+    }
+
     public static CommentDto getCommentDto(UUID userId, UUID codeBlockId) {
         CommentDto commentDto = new CommentDto();
         commentDto.setUserId(userId);
